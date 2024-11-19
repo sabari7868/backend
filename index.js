@@ -1,6 +1,6 @@
+require("./db/connect.js");
 require('dotenv').config();
 const express = require('express');
-const db = require('./db/connect');
 const cors = require('cors');
 
 // import routing
@@ -9,7 +9,6 @@ const loginRouter = require('./routes/authentication');
 const departmentRouter = require('./routes/department.routes');
 const roleRouter = require('./routes/role.routes');
 
-db();
 const app = express();
 
 // DB Connecting
