@@ -1,13 +1,27 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+// db connection
+require("dotenv").config();
+const logger = require('../utils/logger.util');
 
-db = async () => {
-    try {
-        await mongoose.connect(process.env.MONGODB_URL)
-        console.log("DB is connected");
-    } catch (error) {
-        console.log("DB is not connected", error);
-    }
+
+const mongoose = require("mongoose");
+
+
+const dbConnection = process.env.DB_CONNECTION;
+const dbName = process.env.DB_NAME;
+
+
+async function connectToDatabase() {
+try {
+const connectionUri = `${dbConnection}/${dbName}`;
+await mongoose.connect(connectionUri, {
+authSource: "admin",
+retryWrites: false
+ });
+logger.info("Connected to MongoDB");
+ } catch (err) {
+logger.error(`Error connecting to MongoDB: ${err.stack}`);
+ }
 }
 
-module.exports = db;
+
+connectToDatabase();
