@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router();
-const DepartmentController = require('../../employees-backend/controller/department.controller')
+const DepartmentController = require('../controller/department.controller');// db connection
+
 const {verifyToken}  = require('../middleware/authmiddleware')
 
 router.route('/').get(verifyToken,DepartmentController.getAllDepartment).post(verifyToken,DepartmentController.departmentCreate);

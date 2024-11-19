@@ -1,7 +1,5 @@
 // db connection
 require("dotenv").config();
-const logger = require('../utils/logger.util');
-
 
 const mongoose = require("mongoose");
 
@@ -17,9 +15,9 @@ await mongoose.connect(connectionUri, {
 authSource: "admin",
 retryWrites: false
  });
-logger.info("Connected to MongoDB");
+console.log("Connected to MongoDB");
  } catch (err) {
-logger.error(`Error connecting to MongoDB: ${err.stack}`);
+console.log(`Error connecting to MongoDB: ${err.stack}`);
  }
 }
 
